@@ -1,0 +1,67 @@
+﻿<Window x:Class="KinectSensorStreams.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KinectSensorStreams"
+        xmlns:conv="clr-namespace:KinectSensorStreams.Converters"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="850" Width="800">
+    
+    <Window.Resources>
+        <conv:StatusToColorConverter x:Key="statusToColorConverter"/>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="12*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Ellipse
+                Width="25"
+                Height="25"
+                Fill="{Binding KinectManager.Status, Converter={StaticResource statusToColorConverter}}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Margin" Value="10,0,10,0"/>
+                    <Setter Property="Height" Value="25"/>
+                    <Setter Property="Width" Value="110"/>
+                </Style>
+            </StackPanel.Resources>
+
+            <Button Command="{Binding SwitchToColorImageCommand}">
+                <TextBlock>Color</TextBlock>
+            </Button>
+
+            <Button Command="{Binding SwitchToDepthImageCommand}">
+                <TextBlock>Depth</TextBlock>
+            </Button>
+
+            <Button Command="{Binding SwitchToInfraredImageCommand}">
+                <TextBlock>Infrared</TextBlock>
+            </Button>
+
+            <Button Command="{Binding SwitchToBodyImageCommand}">
+                <TextBlock>Body</TextBlock>
+            </Button>
+
+            <Button>
+                <TextBlock>Body &#x0026; Color</TextBlock>
+            </Button>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2">
+            <Viewbox HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Image Name="theImage" Stretch="UniformToFill" Source="{Binding KinectStream.Bitmap}"/>
+            </Viewbox>
+        </StackPanel>
+
+
+    </Grid>
+</Window>

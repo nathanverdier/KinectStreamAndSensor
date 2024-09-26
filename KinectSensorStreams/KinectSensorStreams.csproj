@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net48</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UseWPF>true</UseWPF>
+		<LangVersion>10.0</LangVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+		<PackageReference Include="Microsoft.Kinect" Version="2.0.1410.19000" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\KinectSensorStreamsLibrary\KinectSensorStreamsLibrary.csproj" />
+	</ItemGroup>
+	
+</Project>
